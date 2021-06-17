@@ -12,36 +12,27 @@ from splinter import Browser
 import pandas as pd
 from webdriver_manager.chrome import ChromeDriverManager
 
-
 # In[2]:
-
 
 executable_path = {'executable_path': ChromeDriverManager().install()}
 browser = Browser('chrome', **executable_path, headless=False)
-
 
 # ## NASA Mars News - Scrape the Mars News Site and collect the latest News Title and Paragraph Text
 
 # In[3]:
 
-
 # URL to be scraped
 url = 'https://redplanetscience.com/'
 
-
 # In[4]:
-
 
 browser.visit(url)
 
-
 # In[5]:
-
 
 # Create a Beautiful Soup object with Splinter
 html = browser.html
 soup = bs(html, 'html.parser')
-
 
 # In[6]:
 
@@ -245,7 +236,12 @@ high_res_hemisphere_images_urls
 
 
 # In[38]:
-
+mars = {}
+mars["news_title"] = news_title
+mars["news_body"] = news_body
+mars["featured_image_url"] = featured_image_url
+mars["mars_facts"] = data_frame
+mars["hemisphere_image_urls"] = high_res_hemisphere_images_urls
 
 browser.quit()
 
